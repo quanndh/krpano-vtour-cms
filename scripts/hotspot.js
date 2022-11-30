@@ -15,21 +15,25 @@ zoom="false"
 distorted="false"
 rx="0.0" ry="0.0" rz="0.0"
 width="" height=""
-scale="1.0"
+scale="0.5"
 rotate="0.0"
 alpha="1.0"
 onclick="@onClick"
 />`;
 
-const generateHotspot = (hotspot, currentScreen) => {
-  const screenIndex = screens.findIndex((x) => x.name === currentScreen);
+const generateHotspot = (currentScreen, screenToNavigate) => {
+  const screenIndex = screens.findIndex(
+    (x) => x.name.toLowerCase() === currentScreen.toLowerCase()
+  );
 
   const newHotspot = mapHotspotMetadata({
-    name: "hotspot" + hotspot,
+    name: `hotspot_${currentScreen}_${
+      screens[screenIndex].hotspots.length + 1
+    }`,
     h: String(mouseH),
     v: String(mouseV),
     url: "./skin/vtourskin_hotspot.png",
-    onClick: "goto(test1);",
+    onClick: `goto(${screenToNavigate.name});`,
   });
 
   screens[screenIndex].hotspots.push(newHotspot);

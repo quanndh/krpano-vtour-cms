@@ -13,26 +13,13 @@ const sceneTemplate = `<scene name="@screenName" title="@screenTitle" onstart=""
 [[__hotspots__]]
 </scene>`;
 
-const generateScreen = (screen) => {
-  const data = [
-    {
-      thumbUrl:
-        "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
-      url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/1.tiles/%s.jpg",
-    },
-    {
-      thumbUrl:
-        "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
-      url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625502/2.tiles/%s.jpg",
-    },
-  ];
-
+const generateScreen = (view) => {
   const screenPayload = {
-    screenName: "test" + screen,
-    screenTitle: "test" + screen,
-    thumbUrl: data[screen].thumbUrl,
-    preview: data[screen].thumbUrl,
-    url: data[screen].url,
+    screenName: view.name,
+    screenTitle: view.name,
+    thumbUrl: view.thumbUrl,
+    preview: view.thumbUrl,
+    url: view.url,
   };
   const newScreen = mapScreenMetadata(screenPayload);
 
@@ -40,6 +27,7 @@ const generateScreen = (screen) => {
     name: screenPayload["screenName"],
     data: newScreen,
     hotspots: [],
+    thumbUrl: screenPayload.thumbUrl,
   });
 };
 

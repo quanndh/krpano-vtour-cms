@@ -35,6 +35,22 @@ function loadxmlstring() {
   }
 }
 
+const handleAddScene = () => {
+  if (!track_mouse_enabled) {
+    const currentScreen = krpano.get("xml.scene");
+
+    selectedView.map((viewIndex) => {
+      generateScreen(views[viewIndex]);
+    });
+
+    loadxmlstring();
+    if (currentScreen) {
+      krpano.call(`loadscene(${currentScreen}, null, KEEPVIEW);`);
+    }
+    $("#modal").removeClass("absolute").addClass("none");
+  }
+};
+
 function add_hotspot() {
   if (krpano) {
     alert("Click on the position you want to put the hotspot");
@@ -42,31 +58,9 @@ function add_hotspot() {
   }
 }
 
-document.getElementById("pano").addEventListener("click", () => {
-  if (track_mouse_enabled) {
-    track_mouse();
-    const currentScreen = krpano.get("xml.scene");
-    generateHotspot(nHotspot, currentScreen);
-    nHotspot++;
-    loadxmlstring();
-    krpano.call(`loadscene(${currentScreen}, null, KEEPVIEW);`);
-  }
-});
-
-document.getElementById("addBtn").addEventListener("click", () => {
-  if (!track_mouse_enabled) {
-    const currentScreen = krpano.get("xml.scene");
-    generateScreen(nScreen);
-    nScreen++;
-    loadxmlstring();
-    if (currentScreen) {
-      krpano.call(`loadscene(${currentScreen}, null, KEEPVIEW);`);
-    }
-  }
-});
-
-document.getElementById("addHotspotBtn").addEventListener("click", () => {
-  if (!track_mouse_enabled) {
-    add_hotspot();
-  }
-});
+const handleAppHotspot = () => {
+  const currentScreen = krpano.get("xml.scene");
+  generateHotspot(currentScreen, screenToNavigate);
+  loadxmlstring();
+  krpano.call(`loadscene(${currentScreen}, null, KEEPVIEW);`);
+};

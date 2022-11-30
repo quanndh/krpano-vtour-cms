@@ -3,10 +3,54 @@ let track_mouse_interval_id = null;
 let mouseH = 0;
 let mouseV = 0;
 
-let nScreen = 0;
-let nHotspot = 0;
-
 let screens = [];
+let screenToNavigateIndex = -1;
+let screenToNavigate = null;
+
+const views = [
+  {
+    name: "Hành lang 1",
+    thumbUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/first.tiles/f.jpg",
+    previewUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
+    url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/first.tiles/%s.jpg",
+  },
+  {
+    name: "Hành lang 2",
+    thumbUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/1.tiles/f.jpg",
+    previewUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
+    url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/1.tiles/%s.jpg",
+  },
+  {
+    name: "Hành lang 3",
+    thumbUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/2.tiles/f.jpg",
+    previewUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
+    url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/2.tiles/%s.jpg",
+  },
+  {
+    name: "Hành lang 4",
+    thumbUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/3.tiles/f.jpg",
+    previewUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
+    url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/3.tiles/%s.jpg",
+  },
+  {
+    name: "Hành lang 5",
+    thumbUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/4.tiles/f.jpg",
+    previewUrl:
+      "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669604264/preview_uvuelc.png",
+    url: "https://res.cloudinary.com/dtw4jm3vs/image/upload/v1669625268/4.tiles/%s.jpg",
+  },
+];
+
+let selectedView = [];
 
 let baseXml = `
 <krpano version="1.20.11" title="Virtual Tour">

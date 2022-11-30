@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <title>krpano - bryan-goff-IuyhXAia8EA-unsplash</title>
+    <title>Vtour editor</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
@@ -11,6 +11,11 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -31,16 +36,59 @@
   </head>
   <body>
     <script src="scripts/tour.js"></script>
+    <script src="scripts/variables.js"></script>
 
     <div id="pano" class="w-full h-full z-10"></div>
-    <div class="absolute top-0 left-0 bg-black">
+    <div class="absolute top-0 left-0 bg-black z-11">
       <button id="addBtn" class="m-8">add screen</button>
       <button id="addHotspotBtn" class="m-8">add hotspot</button>
     </div>
 
-    <script src="scripts/variables.js"></script>
+    <div
+      id="modal"
+      class="none bg-black/50 z-12 w-full h-full top-0 left-0 flex justify-center items-center"
+    >
+      <div class="bg-white w-1/2 p-8">
+        <p class="text-black text-xl text-center mb-8">
+          Choose view to create scene
+        </p>
+        <div
+          id="view-container"
+          class="grid grid-rows-3 grid-flow-col gap-8"
+        ></div>
+        <div
+          id="modal-submit"
+          class="cursor-pointer duration-200 ease-out text-white my-4 mx-auto bg-sky-400 hover:bg-sky-500 w-32 text-center py-2 px-4 rounded-sm"
+        >
+          Create scene
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="hotspot-modal"
+      class="none bg-black/50 z-12 w-full h-full top-0 left-0 flex justify-center items-center"
+    >
+      <div class="bg-white w-1/2 p-8">
+        <p class="text-black text-xl text-center mb-8">
+          Choose view to create hotspot
+        </p>
+        <div
+          id="hotspot-view-container"
+          class="grid grid-rows-3 grid-flow-col gap-8"
+        ></div>
+        <div
+          id="hotspot-modal-submit"
+          class="cursor-pointer duration-200 ease-out text-white my-4 mx-auto bg-sky-400 hover:bg-sky-500 w-40 text-center py-2 px-4 rounded-sm"
+        >
+          Create hotspot
+        </div>
+      </div>
+    </div>
+
     <script src="scripts/mouse.js"></script>
     <script src="scripts/index.js"></script>
+    <script src="scripts/ui.js"></script>
     <script src="scripts/screen.js"></script>
     <script src="scripts/hotspot.js"></script>
   </body>
