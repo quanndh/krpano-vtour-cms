@@ -14,7 +14,7 @@ zoom="false"
 distorted="false"
 rx="0.0" ry="0.0" rz="0.0"
 width="" height=""
-scale="0.5"
+scale="0.05"
 rotate="0.0"
 alpha="1.0"
 style="dragablehotspot" 
@@ -35,7 +35,7 @@ const generateHotspot = (currentScreen, screenToNavigate) => {
     }`,
     h: String(mouseH),
     v: String(mouseV),
-    url: "./skin/vtourskin_hotspot.png",
+    url: "./skin/hotspot1.png",
     onClick: `goto(${screenToNavigate.name});`,
   });
 
