@@ -56,6 +56,12 @@ let baseXml = `
 <krpano version="1.20.11" title="Virtual Tour">
 <include url="skin/vtourskin.xml" />
 
+
+<style name="dragablehotspot"
+       dragging="if(pressed, sub(dx,mouse.stagex,drag_adjustx); sub(dy,mouse.stagey,drag_adjusty); screentosphere(dx,dy,ath,atv); if(onDrag!==null, onDrag() ); delayedcall(0,dragging()); , if(onDragEnd!==null, onDragEnd() ); );"
+       ondown="spheretoscreen(ath,atv,hotspotcenterx,hotspotcentery); sub(drag_adjustx,mouse.stagex,hotspotcenterx); sub(drag_adjusty,mouse.stagey,hotspotcentery); if(onDragStart!==null, onDragStart() ); dragging();"
+       />
+       
 <action name="goto">
 	skin_loadscene(%1, OPENBLEND(0.8, 0.0, 0.6, 0.3, easeOutQuad));
 </action>
